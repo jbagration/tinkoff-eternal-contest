@@ -19,25 +19,27 @@
 Во втором примере после изменения происходят передачи подарков ﻿1 \to 2 \to3 \to 11→2→3→1﻿.
 '''
 
-#PT. Пройденные тесты 2.
+#PT. Пройденные тесты 9.
+from collections import Counter
 
-def function():
-    pupils_num = int(input())
-    santa_little_helpers = [int(x) for x in input().split()][:pupils_num]
+n = int(input())
+a = list(map(int, input().split()))
 
-    pupils_list = [pupil for pupil in range(1, pupils_num + 1)]
+count_a = Counter(a)
+if (count_a.most_common(1)[0][1] == 2) and (count_a.most_common(2)[1][1] == 1):
+    empty = [i for i in range(1, len(a)+1) if i not in count_a]
+    if len(empty) != 1:
+        print(-1, -1)
+    else: 
+        n_change = a.index(count_a.most_common(1)[0][0])
+        a[n_change] = empty[0]
+        end = a[0]
+        for _ in range(len(a)):
+            end = a[end-1]
+        if end == a[0]:
+            print(n_change+1, empty[0])
+        else: 
+            print(a.index(count_a.most_common(1)[0][0])+1, empty[0])
 
-    right_order = [pup + 2 if pup != pupils_num - 1 else 1 for pup in range(pupils_num)]
-    santa_little_helpers.append(santa_little_helpers.pop(0))
-    expected = list(zip(pupils_list, right_order))
-    given = list(zip(pupils_list, santa_little_helpers))
-
-    diff = [(given[i][0], expected[i][1]) for i in range(pupils_num) if given[i] != expected[i]]
-
-    if not diff:
-        return "-1 -1"
-    return "{0} {1}".format(diff[0][0], diff[0][1])
-
-
-if __name__ == "__main__":
-    print(function())
+else:
+    print(-1, -1)
