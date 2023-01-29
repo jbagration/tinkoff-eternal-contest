@@ -18,11 +18,26 @@
 Во втором тесте подходят все числа, кратные ﻿11﻿, от ﻿11﻿ до ﻿99﻿.
 '''
 
-new_str = list((input().split('  ')))
-ranges = []
-start_len = len(new_str[0])
-end_len = len(new_str[1])
-for i in range(start_len, end_len + 1):
-    add = 1 if not i else i
-    value = int('1' * add)
-    ranges.append(range(value, (9 * value) + 1, value))
+#OK. Пройденные тесты 69.
+def function():
+    lesser, bigger = (int(x) for x in input().split())
+
+    digits = len(str(bigger))
+    tests = []
+
+    for k in range(1, 10):
+        if digits == 1:
+            if lesser <= k <= bigger:
+                tests.append(k)
+        else:
+            for digit in range(1, digits + 1):
+                test = int(str(k) * (digit))
+                if lesser <= test <= bigger:
+                    tests.append(test)
+
+    tests = set(tests)
+    return str(len(tests))
+
+
+if __name__ == "__main__":
+    print(function())
