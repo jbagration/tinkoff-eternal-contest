@@ -24,7 +24,7 @@
 Во втором примере Кате понадобится подняться к уходящему сотруднику, а потом пройти всех остальных — например, в порядке ﻿\{1,2,3,4,6\}{1,2,3,4,6}
 '''
 
-# Пройденные тесты	5.
+# Пройденные тесты 5.
 n,t = map(int,input().strip().split())
 floors = list(map(int,input().strip().split()))
 pers = int(input())
@@ -36,3 +36,30 @@ def time_floor(n,t,floors, pers):
         return max(floors[:pers-1]+floors[pers:])+floors[pers-1]-2
    
 print(time_floor(n,t,floors, pers))
+
+
+
+# Пройденные тесты 44.
+def function():
+    employees, time_to_leave = [int(x) for x in input().split()]
+    floors = [int(x) for x in input().split()]
+    employee = int(input())
+
+    deadline = floors[employee - 1]
+
+    min_floor = floors[0]
+    max_floor = floors[-1]
+
+    if deadline - min_floor < time_to_leave:
+        summary_time = max_floor - min_floor
+
+    else:
+        up = max_floor - min_floor + max_floor - deadline
+        down = max_floor - min_floor + deadline - min_floor
+        summary_time = min(up, down)
+
+    return str(summary_time)
+
+
+if __name__ == "__main__":
+    print(function())
