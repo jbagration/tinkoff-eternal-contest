@@ -10,7 +10,7 @@
 Во втором примере Костя укладывается в тарифный план, поэтому платит только за него. '''
 
 
-# OK. Пройденные тесты	7.
+# Решение 1. OK. Пройденные тесты	7.
 in_data = list(map(int,input().strip().split()))
 
 def tarif(data):
@@ -23,3 +23,13 @@ def tarif(data):
 
 print(tarif(in_data))
 
+# Решение 2. OK.
+def function():
+    a, b, c, d = [int(x) for x in input().split()]
+    if d - b > 0:
+        return str(a + (d - b) * c)
+    else:
+        return str(a)
+
+if __name__ == "__main__":
+    print(function())
